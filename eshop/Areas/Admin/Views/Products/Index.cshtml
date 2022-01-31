@@ -1,0 +1,73 @@
+﻿@model IEnumerable<eshop.Models.Product>
+
+@{
+    ViewData["Title"] = "All products";
+}
+
+<h2>All products</h2>
+
+<br />
+<a asp-action="Create">Add new product</a>
+
+<br />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Available)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.ImageSrc)
+            </th>*@
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Available)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.ImageSrc)
+                </td>*@
+
+                <td><a asp-action="Edit" asp-route-ID="@item.ID">Edit </a></td>
+                <td><a asp-action="Delete" asp-route-ID="@item.ID" onclick="return ConfirmDelete();">Delete </a></td>  <!--pass just when delete is confirmed-->
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts
+{
+    <script src="~/js/Scripts.js"></script>
+}

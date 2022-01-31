@@ -1,0 +1,94 @@
+﻿@model IEnumerable<eshop.Models.GuardingDog>
+
+@{
+    ViewData["Title"] = "Guarding dog";
+}
+
+<h1>My Guarding dog</h1>
+
+<br />
+
+<span> Total: @Model.Count() guarded items </span>
+
+<br />
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            @if (User.Identity.Name == "admin")
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.UserID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.UserName)
+                </th>
+            }
+            <th>
+                @Html.DisplayNameFor(model => model.ProductID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Price)
+            </th>
+            <th>
+                Availability
+            </th>
+
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            @if (User.Identity.Name == "admin")
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Price)
+            </td>
+
+            @if (item.Product.Available == true)
+            {
+                <td>
+                    <span style="color: lightgreen"> Available </span>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <span style="color: red"> Not available </span>
+                </td>
+            }
+
+            <td><a asp-action="Delete" asp-route-ID="@item.ID" onclick="return ConfirmDelete();">Delete </a></td>  <!--pass just when delete is confirmed-->
+        </tr>
+        }
+    </tbody>
+</table>
