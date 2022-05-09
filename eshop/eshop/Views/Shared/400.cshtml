@@ -1,0 +1,19 @@
+﻿@model ErrorCodeStatusViewModel
+@{
+    ViewData["Title"] = "Error 400";
+}
+
+<h1 class="text-danger">Error 400</h1>
+
+@if (Model != null)
+{
+    <p>
+        <strong> Status Code: </strong> <code>@Model.StatusCode</code>
+    </p>
+
+    <p>
+        <strong> Incorrect request syntax </strong>
+        Checkout your request, please. 
+    </p>
+}
+

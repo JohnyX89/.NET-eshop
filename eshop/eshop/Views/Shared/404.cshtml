@@ -1,0 +1,28 @@
+﻿@model _404ViewModel
+@{
+    ViewData["Title"] = "Error 404";
+}
+
+<h1 class="text-danger">Error 404</h1>
+
+@if (Model != null)
+{
+    <h3> I did not find any requested site. </h3>
+
+    <br />
+    <br />
+
+    <p>
+        <img src="~/images/Errors/Error404_03.jpg" alt="Error404_image" class="img-responsive" />
+
+        <br />
+        <br />
+
+        <strong> Please try the following: </strong>
+        <ul>
+            <li> If U typed URL directly to the adress bar - check if U spell the whole URL correctly! </li>
+            <li> Continue to the <a asp-controller="Home" asp-action="Index"> HOME PAGE </a> </li>
+        </ul>
+    </p>
+}
+
